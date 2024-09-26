@@ -1,0 +1,118 @@
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+>
+        <channel>
+                <title>bartholomy</title>
+                <link>http://localhost:1313/posts/</link>
+
+                <description>Moral critique, neuroscience, psychoanalysis, anthropology, and philosophy.</description>
+                <generator>Hugo -- gohugo.io</generator>
+
+                <language>en-us</language>
+
+                <managingEditor>yo@bartholomy.ooo</managingEditor>
+
+                <webMaster>yo@bartholomy.ooo</webMaster>
+
+                <copyright>&#169; 2024 hautogdoad</copyright>
+
+                <lastBuildDate>Fri, 20 Sep 2024 11:07:49 -0700</lastBuildDate>
+                <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+
+                <item>
+                        <title>Tapetum Lucidum</title>
+                        <link>http://localhost:1313/posts/tapetum-lucidum/</link>
+                        <pubDate>Thu, 12 Sep 2024 14:21:21 -0700</pubDate><author>yo@bartholomy.ooo (Bartholomy)</author>
+                        <guid>http://localhost:1313/posts/tapetum-lucidum/</guid>
+                        <description>Bartholomy&#39;s latest book</description>
+
+                            <enclosure
+                                url="http://localhost:1313/covers/0237_tapetum_720w_transp.png"
+                                length="47187"
+                                type="image/png"
+                                />
+
+                        <content:encoded><![CDATA[
+<p>My latest book on consciousness and meditation is <a href="https://www.amazon.com/dp/1737889420">now available</a>.</p>
+<p>A guide for the spiritually disenchanted. Neuroscience is made to pay up: to yield insight, reasons to be brave, reasons to endure the discipline and comedy that genuine meditative practice entails.</p>
+<p>Buy it, review it, love it, hate it, throw it on the ground, throw it out your car window, leave it at your mom's house, burn it, sleep with it under your pillow, wake up and try again.</p>
+]]></content:encoded>
+                </item>
+
+                <item>
+                        <title>Why fractals?</title>
+                        <link>http://localhost:1313/posts/why-fractals/</link>
+                        <pubDate>Sat, 17 Aug 2024 13:38:35 -0700</pubDate><author>yo@bartholomy.ooo (Bartholomy)</author>
+                        <guid>http://localhost:1313/posts/why-fractals/</guid>
+                        <description>Biological transcoding efficiencies</description>
+
+                            <enclosure
+                                url="http://localhost:1313/covers/minkowski.png"
+                                length="4104"
+                                type="image/png"
+                                />
+
+                        <content:encoded><![CDATA[
+<div class='heading-wrapper'>
+<h4 id="0">.0
+
+</h4>
+</div>
+<p>Even Mandelbrot never seemed to ask himself what the distinct <em>design advantage</em> of fractalic structure might be: like most mathematicians, he's so impressed by the elegance of the encoding scheme that every other consideration fades from view. But that simplicity and rigor might actually be a hindrance in organic terms, since an organism may lose too much adaptive range for whatever savings in encoding is gained: it'd be worth asking the question why life didn't develop further along purely fractalic lines, but seemed to abandon it early on in favor of other symmetries.</p>
+<p>It strikes me that the primary advantage of the fractal is not its encoding elegance but its <em>amplification potential</em>. Realized fractality acts inevitably as an amplifier of weak and partial signal. Like cracking a whip, the trick is to follow the gentle curve of its unfolding, to induce acceleration without exceeding its accumulating inertia. The cumulative signal grows logarithmically as it proceeds along the fractal scale: amplification response and generative formula coincide.</p>
+<div class='heading-wrapper'>
+<h4 id="1">.1
+
+</h4>
+</div>
+<p>This assumes that every scaling step, a proportional response grows the signal while matching the antennal sensitivity: such that we don't waste realized surface area for signal transduction. This reminds me of how surfers read waves: they sense which among the series has the best potential to match both the amplifying properties of the shoreline and the ambient perturbations of the medium - if there's too much amplitude early it'll crest before the contours of the seafloor can express themselves.</p>
+<div class='heading-wrapper'>
+<h4 id="2">.2
+
+</h4>
+</div>
+<p>My guess is that if we plotted the response in a naturally occurring fractal antenna, we'd find it was some proportion of Euler's number, a smooth growth function. The idea is that we don't want turbulence in growth. If we expend too much of the incoming signal - which is nothing but energy - too early in the response, we may fail to explore its full scope. We want a smooth distribution along our growth curve, gaining in amplitude and bandwidth while we eat into our signal budget. From the organic point of view, we don't know the value of any incoming information until it's been fully processed, but some signals are essential, so both efficiency and poised sensitivity are needed: fractal structure seems to allow for the gradual entrainment of some maximum of the network by simply scaling up, from the most responsive smaller scales to the larger less sensitive scales. This should also allow simultaneous signals to compete in parallel. Again during the signal event, neither the duration, nor the amplitude, nor the frequency band, nor the informative value is known until it's traversed.</p>
+<p>This assumes that the signal is sufficiently uniform such that fractality has a chance to kick in - to utilize its own self-similar scaling to explore the signal without wasting time nor incoming energy. Imagine what happens when you flick a tuning fork: there's short but intense period of turbulent discharge, in which you've induced useless noise, before enough signal is dissipated that the fork can respond according to its resonant frequency: this is what we want to avoid.</p>
+<div class='heading-wrapper'>
+<h4 id="3">.3
+
+</h4>
+</div>
+<p>So the question becomes: is this a plausible model for the kind of neural excitation I have in the back of my mind? Namely myoclonus vs the "kundalini shivers":</p>
+<ul>
+<li>The kundalini shivers represent the remnant turbulence of an excursion past the critical point, triggered typically by inhalation.</li>
+<li>Myoclonic cascade represents the fallback, from some supercritical excitation to subcritical, triggered by exhalation.</li>
+</ul>
+<p>It's worth emphasizing that these are merely <em>symptoms</em>, not the traversals themselves: these are merely turbulent signatures, vestigial signs. Keeping in mind that most of what happens in the nervous system is <em>invisible because it's efficient</em>: the only way to characterize it is via errata, excess noise, essentially <em>exhaust</em> - which is why overexcitation via psychedelia and deep meditation is so valuable. We need clues to how the smooth transduction event unfolds, the invisible induction and dissipative loss.</p>
+<div class='heading-wrapper'>
+<h4 id="4">.4
+
+</h4>
+</div>
+<p>There's a caveat that hasn't yet been expressed: criticality may not yield a grand unified theory of neural activity. It may only represent one possible mode: maybe callibration, maybe rare and expensive peak neural performance, it may not even be particularly adaptive to sustain. My own experience is that it's very brief at best. On the other hand, it does seem that we're supposed to experience critical states every waking cycle, that we transition from sleep states of very low excitation to supercritical positions, that we should be more or less always on the move between these extremes, easily rising and gently falling - that would be the profile of a healthy creature. The larger context here is probably the wake-sleep cycle, and I rarely see this considered in all the talk about neural criticality: that we should be considering a continuum from the broadly coherent oscillations of deepest sleep to critical scale-invariant activation.</p>
+]]></content:encoded>
+                </item>
+
+                <item>
+                        <title>Fragile Placidity</title>
+                        <link>http://localhost:1313/posts/fragile-placidity/</link>
+                        <pubDate>Mon, 05 Aug 2024 14:57:54 -0700</pubDate><author>yo@bartholomy.ooo (Bartholomy)</author>
+                        <guid>http://localhost:1313/posts/fragile-placidity/</guid>
+                        <description>Profound states of neural excitation</description>
+
+                            <enclosure
+                                url="http://localhost:1313/covers/dendrites.jpg"
+                                length="105046"
+                                type="image/jpeg"
+                                />
+
+                        <content:encoded><![CDATA[
+<p>That a reducing but ambitious, articulate but plausible theory of consciousness helps the student of meditation: that it is designed especially to guide those who experience <em>profound states of neural excitation</em> - that my theory makes no sense outside those experiences, that it assumes a familiarity with extremes of systemic coherence, many of which come dangerously close to the pseudoepiletic. That this is something everyone is to some extent familiar with, but no one will talk about: just like talking to yourself, the peripheral ticks and twitches and microhypnoses we learn to cover over with mannerism and mood, are the neglected clues to an entirely new vista. That you are a fragile placidity over a shimmering turbulent flow, that every moment is decomposable into a thousand petulant incipient urges, that the mere act of breathing involves the successive activation of a chain of subsystems and a ripple palpable in the spinal musculature, that when you're doing nothing you are doing a thousand things homogeneously, that sitting meditation can become one of the most intense experiences possible because it seeks to <em>contain neural excitation until it goes critical</em>: that's the payoff of all this work with "nonlinear dynamic systems" and the like. By whatever means necessary, we find a way out of the brutality of the Cartesian medical-mechanic: the reigning metaphors concerning the bodymind are infused with some of the most entrenched stupidity the Western tradition has to offer, rooted not in the best of Greek thinking as our mathematics and logic is, but in the <em>willfully stupid metaphors of the postaxial priest</em>, especially those of Roman Christianity with its godfather in Augustine, trained at an early age to think slavishly by the Manicheans. Even the Zoroastrian heresy was a betrayal of the ancient fire cult of the Indo-Iranians, clearly the work of a popularizer and an all-too-conscious prophet, one who intuited the needs of the people for a world of black and white, for a more personalized dramaturgy which might explain their anxiety, the first religion addressed to the tribeless individual. That therefore a theory of consciousness is directly implied by the moral revolution of late antiquity and modernity, that I continue to encounter the problem because my psychohistory depends on a working understanding of the nomadic-agricultural tension coming to the surface in peak modernity - which is that point at which nomadic valuations begin to make sense again, in which we all begin to feel like lone wanderers of a wilderness ousted from a fictional tribe, as though we were the crazy ones pushed to the frontier and only occasionally consulted in matters of extreme duress, such as would have only visited a tribe once every few generations...</p>
+<p>To be fully modern is to be this tribeless halfmad loner, the one who hallucinates like his ancestors but speaks the language of his peers. As the tribe fragments under stress, it throws out its more exceptional first, in order to sample the neighboring space of innovation: a human community is also a psychosomatic calculator, creeping along strange curves. Modern individuality and its hypertrophic self-consciousness was once an innovation, something marveled at from a distance and kept away from children. Therefore a "decomposed" unity of experience is not something desirable in itself, but necessary as palliative, as remedial education in the basics of subjective elasticity: healthy creatures trip out a lot, without much concern. Nearly every time my dogs nap, they undergo extreme PGO waves during REM, often drifting up to awareness out of what must often be intense dreams - I can see them remark to themselves about the situation, sigh, and go back. The healthy creature is not concerned with transitions of context, nor scale, nor the precise terms of sanity: its joy and lust will take care of pathfinding, and sanity will percolate out from the balance of its ancestral desires. Healthy creatures just find themselves acting for their own benefit, who cares "why".</p>
+]]></content:encoded>
+                </item>
+
+
+        </channel>
+</rss>
