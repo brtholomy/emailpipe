@@ -16,7 +16,7 @@ type EmailForm struct {
 	Text    string
 }
 
-func main() {
+func SendEmail(content string) error {
 	key := os.Getenv("MAILGUN_TEST_API_KEY")
 	endpoint := "https://api.mailgun.net/v3/sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org/messages"
 
@@ -28,7 +28,7 @@ func main() {
 
 	b, err := json.Marshal(e)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	j := bytes.NewReader(b)
 
@@ -36,11 +36,17 @@ func main() {
 	req.Header.Add("Authorization", "Bearer "+key)
 	req.Header.Add("Content-Type", "application/json")
 
-	res, _ := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return err
+	}
 
 	fmt.Println(res)
 	fmt.Println(string(body))
-
+	return nil
 }
