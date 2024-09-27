@@ -25,29 +25,29 @@ func SendEmail(content string) error {
 	htmlFw, _ := writer.CreateFormField("html")
 	_, err := io.Copy(htmlFw, strings.NewReader(Text))
 	if err != nil {
-		panic(err)
+		return err
 	}
 	fromFw, _ := writer.CreateFormField("from")
 	_, err = io.Copy(fromFw, strings.NewReader(From))
 	if err != nil {
-		panic(err)
+		return err
 	}
 	toFw, _ := writer.CreateFormField("to")
 	_, err = io.Copy(toFw, strings.NewReader(To))
 	if err != nil {
-		panic(err)
+		return err
 	}
 	subjectFw, _ := writer.CreateFormField("subject")
 	_, err = io.Copy(subjectFw, strings.NewReader(Subject))
 	if err != nil {
-		panic(err)
+		return err
 	}
 	writer.Close()
 
 	payload := bytes.NewReader(data.Bytes())
 	req, err := http.NewRequest("POST", endpoint, payload)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	req.SetBasicAuth("api", key)
