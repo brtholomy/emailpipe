@@ -11,36 +11,28 @@ import (
 	"strings"
 )
 
-func SendEmail(content string) error {
+func SendEmail(content string, subject string) error {
 	key := os.Getenv("MAILGUN_TEST_API_KEY")
+	if key == "" {
+		panic("no api key found")
+	}
 	endpoint := "https://api.mailgun.net/v3/sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org/messages"
 
-	From := "bth  <mailgun@sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org>"
-	To := "test@hautogdoad.com"
-	Subject := "Foo go test"
-	Text := "go test yeah"
+	fields := make(map[string]string)
+	fields["from"] = "bth  <mailgun@sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org>"
+	fields["to"] = "test@hautogdoad.com"
+	fields["subject"] = subject
+	fields["text"] = content
 
 	data := &bytes.Buffer{}
 	writer := multipart.NewWriter(data)
-	htmlFw, _ := writer.CreateFormField("html")
-	_, err := io.Copy(htmlFw, strings.NewReader(Text))
-	if err != nil {
-		return err
-	}
-	fromFw, _ := writer.CreateFormField("from")
-	_, err = io.Copy(fromFw, strings.NewReader(From))
-	if err != nil {
-		return err
-	}
-	toFw, _ := writer.CreateFormField("to")
-	_, err = io.Copy(toFw, strings.NewReader(To))
-	if err != nil {
-		return err
-	}
-	subjectFw, _ := writer.CreateFormField("subject")
-	_, err = io.Copy(subjectFw, strings.NewReader(Subject))
-	if err != nil {
-		return err
+
+	for field, val := range fields {
+		formfield, _ := writer.CreateFormField(field)
+		_, err := io.Copy(formfield, strings.NewReader(val))
+		if err != nil {
+			return err
+		}
 	}
 	writer.Close()
 

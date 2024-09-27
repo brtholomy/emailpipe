@@ -19,7 +19,7 @@ func main() {
 	fmt.Println(i.Title)
 	fmt.Println(i.Description)
 
-	if err := SendEmail(i.Content); err != nil {
+	if err := SendEmail(i.Content, i.Title); err != nil {
 		panic(err)
 	}
 }
