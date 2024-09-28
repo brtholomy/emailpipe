@@ -1,0 +1,508 @@
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+<html lang=3D"en" xml:lang=3D"en">
+
+    <head>
+        <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
+tf-8"/>
+
+        <style type=3D"text/css">
+           =20
+                p,div,ul,li{max-width:600px;line-height:1.4em;font-size:16p=
+x}hr{border:0;border-bottom:1px #808080 dotted;max-width:600px;margin-left:=
+0}h4{font-size:14px}h3{font-size:16px}h2{font-size:18px}h1{font-size:20px}i=
+mg{max-width:100%!important;margin-left:0!important;margin-right:0!importan=
+t}blockquote{border-left:4px solid #acb3be;color:#7e8a9a;margin-left:0;padd=
+ing-left:1em}figure{text-align:center}figcaption{text-align:center;width:10=
+0%;margin-top:5px;font-size:14px;color:#7e7e82;margin-bottom:30px}.newslett=
+er-notice{background-color:#d9edf7;color:#31708f;border-radius:5px;text-ali=
+gn:center;padding:20px 30px}pre{border-radius:0 .25rem .25rem 0;overflow-x:=
+auto;padding:1em;font-size:15px;line-height:20px;background-color:#272822}c=
+ode{border-radius:0 .25rem .25rem 0;font-size:14px;color:#fff}p code,li cod=
+e,h1 code,h2 code,h3 code,h4 code{background:#eee;color:#333}@media (prefer=
+s-color-scheme: dark){code{background:#44494e}}.instagram{position:relative=
+;color:#fff!important;border:1px solid #ebedef;border-radius:8px;font-famil=
+y:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-ser=
+if;font-size:14px;margin-bottom:10px}.instagram__header{padding:7px 7px 7px=
+ 14px;height:30px;line-height:30px}.instagram__header a{color:#000!importan=
+t}.instagram__author-image{display:inline-block;margin-right:10px}.instagra=
+m__author-image img{display:inline-block;height:30px;width:30px!important;b=
+order-radius:15px}.instagram__author-name{vertical-align:top;font-weight:60=
+0;text-decoration:none}.instagram__footer{padding:14px}.instagram__caption{=
+line-height:18px}img[goomoji]{width:24px!important}.tweet{display:block;fon=
+t: 16px/1.4 Helvetica,Roboto,Segoe UI,Calibri,sans-serif;color:#1c2022!impo=
+rtant;white-space:normal;white-space:initial;overflow:hidden;cursor:pointer=
+;background:#fff 0 0;border:1px solid #e1e8ed;border-radius:4px;margin-top:=
+10px;margin-bottom:10px}.tweet blockquote{background-color:#fff!important;m=
+argin:0!important}.tweet a,.tweet a:visited,.tweet a:active{color:#222!impo=
+rtant;text-decoration:none}.tweet a:focus,.tweet a:hover{color:#3b94d9}.twe=
+et a:focus{text-decoration:underline}.tweet .screen_name{line-height:0px;fo=
+nt-size:14px;color:#697882}.tweet .screen_name:before{white-space:pre;conte=
+nt:"\a"}.tweet .name{font-weight:700}.tweet .text+.metadata{margin-top:3.2p=
+x}.tweet .metadata{font-size:14px;color:#697882}.tweet .text{white-space:no=
+rmal;cursor:text}.tweet .header,.tweet .body{padding:20px}.tweet .header{po=
+sition:relative;padding-bottom:0;padding-top:10px;white-space:nowrap}.tweet=
+ .body{margin-top:14px;padding-top:0;padding-bottom:14px}.tweet .media{bord=
+er-bottom:1px solid #e1e8ed;line-height:0}.tweet .author{margin-top:2px;lin=
+e-height:0;max-width:100%;overflow:hidden!important;text-overflow:ellipsis!=
+important;white-space:nowrap!important;word-wrap:normal!important}.tweet .a=
+uthor .link{line-height:1.2}.tweet .author .avatar{display:inline-block;wid=
+th:36px;height:36px;overflow:hidden;background-color:transparent;margin-rig=
+ht:5px;border-radius:50%}.tweet .author .avatar img{max-width:100%;max-heig=
+ht:100%}.tweet .link_blend:not(:focus):not(:hover):not(:active){font-weight=
+:inherit;color:inherit;text-decoration:inherit}.tweet blockquote,.tweet p{m=
+argin:0;padding:0;list-style:none;border:none}.tweet blockquote img,.tweet =
+p img{width:auto!important}.tweet img.media{margin-left:-20px;margin-top:-2=
+0px;margin-bottom:20px;width:100%;max-width:calc(100% + 40px);border-bottom=
+:1px solid #e1e8ed}.tweet img{width:100%}.tweet:hover,.tweet:hover .media{b=
+order-color:#ccd6dd}.tweet blockquote{background:none}.favorite-count__icon=
+,.retweet-count__icon{width:1.25em;-webkit-transform:scaleX(1);transform:sc=
+aleX(1);display:inline-block;height:1.25em;background-repeat:no-repeat;back=
+ground-size:contain;vertical-align:text-bottom}.retweet-count__icon{backgro=
+und-image:url(data:image/svg+xml;charset=3Dutf-8,%3Csvg%20xmlns%3D%22http%3=
+A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20=
+viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23657786%22%20d%3D%2=
+2M23.77%2015.67c-.292-.293-.767-.293-1.06%200l-2.22%202.22V7.65c0-2.068-1.6=
+83-3.75-3.75-3.75h-5.85c-.414%200-.75.336-.75.75s.336.75.75.75h5.85c1.24%20=
+0%202.25%201.01%202.25%202.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06%20=
+0s-.294.768%200%201.06l3.5%203.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5=
+-3.5c.294-.292.294-.767%200-1.06zm-10.66%203.28H7.26c-1.24%200-2.25-1.01-2.=
+25-2.25V6.46l2.22%202.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.2=
+93-.768%200-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06%200l-3.5%203.5c-.294.29=
+2-.294.767%200%201.06s.767.293%201.06%200l2.22-2.22V16.7c0%202.068%201.683%=
+203.75%203.75%203.75h5.85c.414%200%20.75-.336.75-.75s-.337-.75-.75-.75z%22%=
+2F%3E%3C%2Fsvg%3E)}.favorite-count__icon{margin-left:10px;background-image:=
+url(data:image/svg+xml;charset=3Dutf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww=
+.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D=
+%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23657786%22%20d%3D%22M12%2021.=
+638h-.014C9.403%2021.59%201.95%2014.856%201.95%208.478c0-3.064%202.525-5.75=
+4%205.403-5.754%202.29%200%203.83%201.58%204.646%202.73.813-1.148%202.353-2=
+.73%204.644-2.73%202.88%200%205.404%202.69%205.404%205.755%200%206.375-7.45=
+4%2013.11-10.037%2013.156H12zM7.354%204.225c-2.08%200-3.903%201.988-3.903%2=
+04.255%200%205.74%207.035%2011.596%208.55%2011.658%201.52-.062%208.55-5.917=
+%208.55-11.658%200-2.267-1.822-4.255-3.902-4.255-2.528%200-3.94%202.936-3.9=
+52%202.965-.23.562-1.156.562-1.387%200-.015-.03-1.426-2.965-3.955-2.965z%22=
+%2F%3E%3C%2Fsvg%3E)}.tweet-actions{margin-top:5px;font-size:14px}.identifie=
+r{display:inline-block}.video{position:relative;display:block;margin:16px 0=
+!important}.video:before{content:"";position:absolute;width:30%;height:30%;=
+left:35%;top:35%;z-index:10}
+
+
+                a {
+                    color: #c65108 !important;
+                }
+
+               =20
+                    .buttondown-button {
+                        background-color: #c65108 !important;
+                    }
+               =20
+
+                body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+table,
+tr,
+td,
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+p,
+div,
+ul,
+li {
+  max-width: 100%;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+th,
+td {
+    border-bottom: 1px solid;
+}
+
+th {
+    font-weight: 700;
+}
+
+.newsletter-container {
+    width: 720px;
+}
+
+.newsletter-body {
+    margin-bottom: 20px;
+}
+
+.bth-header, .newsletter-footer, .newsletter-colophon {
+    color: #c09030;
+    background-color: #180904;
+    border-radius: 10px;
+    padding: 50px 0;
+    margin: 20px 0 20px 0;
+}
+
+.newsletter-footer {
+    margin: 50px 0 20px 0;
+    padding: 50px 0 20px 0;
+}
+
+.newsletter-footer img {
+    width: 15%;
+}
+
+.newsletter-footer p, .newsletter-footer h2 {
+    text-align: center;
+}
+
+.newsletter-footer p.copyright {
+    color: #6e4522;
+    font-size: 14px;
+}
+
+.newsletter-colophon {
+    padding: 12px 12px 0 12px;
+}
+
+/* this feel disingenuous. I hate small unsubscribe links. */
+/* .newsletter-colophon p { */
+/*     font-size: 14px; */
+/* } */
+
+.bth-header h1, .bth-header h2 {
+    text-align: center;
+}
+
+.bth-header-link {
+    margin: 20px 20px 0 0;
+    text-align: center;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px #c65108 solid;
+  max-width: 50%;
+  margin: 1.8em auto;
+}
+
+.newsletter-body + hr {
+  display: none;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+img {
+  max-width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+div.audio {
+    margin: 3em 0;
+}
+
+audio {
+    width: 100%;
+    background-color: #c65108;
+}
+
+blockquote {
+  color: #6e4522;
+  border-left: 4px solid #c65108;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+figcaption {
+  color: #7d828a;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0.25em;
+}
+
+.newsletter-notice {
+  background-color: #d9edf7;
+  color: #c65108;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px 30px;
+}
+
+pre {
+  color: #d6c59f;
+  background: #6e4522;
+  border-radius: 0 0.25rem 0.25rem 0;
+  overflow-x: auto;
+  padding: 1em;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.codehilite pre {
+  background: none;
+}
+
+code {
+  color: #d6c59f;
+  background: #6e4522;
+  border-radius: 0 0.25rem 0.25rem 0;
+  font-size: 14px;
+  padding: 3px 6px;
+}
+           =20
+        </style>
+
+        <meta name=3D"x-apple-disable-message-reformatting">
+
+        <meta name=3D"color-scheme" content=3D"light dark">
+        <meta name=3D"supported-color-schemes" content=3D"light dark">
+    </head>
+    <body>
+       =20
+
+        <div class=3D"newsletter-container">
+
+           =20
+
+           =20
+
+            <div class=3D"newsletter-body">
+                <div class=3D"bth-header"><h1>The Golden Calf</h1><h2>AI as=
+ godchild of technocratic priesthood</h2><a href=3D"https://www.bartholomy.=
+ooo/posts/goldencalf/"><img alt=3D"The Golden Calf" src=3D"https://www.bart=
+holomy.ooo/covers/android.webp"/></a><p class=3D"bth-header-link"><a href=
+=3D"https://www.bartholomy.ooo/posts/goldencalf/">Read it on bartholomy.ooo=
+</a></p></div>
+<div class=3D"heading-wrapper"><h4 id=3D"0">.0</h4></div>
+<p>People often ask me what I think of AI. I find myself repeating this wit=
+hout much effect because it's not what they want to hear:</p>
+<ul>
+<li>We're not anywhere near the birth of an artificial intelligence.</li>
+<li>We're producing <em>convincing illusions</em> for the sake of distracti=
+on and feeble hope. <em>Desperate credulity</em> plays a large part.</li>
+<li>Currently dominant approaches to artificial intelligence contain no rea=
+l scientific breakthrough. Most of the ideas are at least 50 years old.</li=
+>
+<li>All recent progress in AI has been powered by improvements to <em>hardw=
+are</em>, not the algorithms.</li>
+<li>All innovations have been <em>engineering challenges</em> to overcome t=
+he relative stupidity of the approach.</li>
+<li>This approach is essentially <em>brute force</em>. We increase the dime=
+nsions to the limit of what the hardware can manage.</li>
+<li>I believe that current approaches running on von Neumann architecture a=
+re already plateauing: eventually there will be no more hardware headroom u=
+nless quantum computing becomes practical.</li>
+<li>There is no one single insight or scientific theory behind it all. What=
+ you see is much like a modern automobile: an old idea wrapped in innumerab=
+le luxurious extras, designed to smooth out the ride and disguise the lack =
+of originality.</li>
+</ul>
+<div class=3D"heading-wrapper"><h4 id=3D"1">.1</h4></div>
+<blockquote>
+<p>It would be the height of arrogance and foolishness to assume that we ar=
+e now using the ultimate technology for computation, namely silicon based i=
+ntegrated circuits.</p>
+</blockquote>
+<blockquote>
+<p>Brooks, <em>Intelligence Without Reason</em>, =C2=A73</p>
+</blockquote>
+<p>Consider the space race. What got us to the moon? Was it science, or was=
+ it engineering? Getting three dudes to chum around on our natural satellit=
+e involved an unthinkable stack of engineering challenges, but the fundamen=
+tal science was Newtonian physics and good chemistry. Essentially <em>brute=
+ force</em>: the Saturn V rocket was a 3,000,000 kg fuel tank carrying 40,0=
+00 kg of payload - an efficiency probably better than what our chatbots acc=
+omplish, since a moonwalk is arguably an order of magnitude more impressive=
+ than churning out a string of characters to be displayed on a 2D grid of p=
+ixels. This is a <em>highly impoverished domain of intelligence</em>: just =
+because we exchange such strings all day long, have learned to hallucinate =
+a human presence behind every such string, and for many of us this exchange=
+ of bytes represents our livelihood, we've come to believe that this task m=
+ust represent one of the fundamental challenges of intelligence - "if writi=
+ng emails and sloppy javascript all day long constitutes my essential value=
+, a computer that can do it autonomously and convincingly must be pretty sm=
+art".</p>
+<div class=3D"heading-wrapper"><h4 id=3D"2">.2</h4></div>
+<p>When they create something as wildly successful, agile, and tenacious as=
+ a housefly, I'll be impressed. When we're able to create something which d=
+emonstrates navigation and success in the <em>real world of space and time<=
+/em>, that will qualify as genuine intelligence - until then, it's merely i=
+mpoverished simulation and childish digital games.</p>
+<div class=3D"heading-wrapper"><h4 id=3D"3">.3</h4></div>
+<p>Having said all that, here are the caveats:</p>
+<ul>
+<li>Truly neuromorphic hardware is on the way. When genetics and silicon me=
+et, when we're growing engineered tissue to suit our needs, and when we're =
+able to write software for that tissue-hybrid, things may progress rapidly.=
+ Genetics is the most dangerous and potent 21st century science. No matter =
+how many GPUs they stack, no matter how many vector spaces they intertwine,=
+ machine learning will never achieve anything like the awesome power of rel=
+atively simple genetic editing: the recent flatulence of virology may only =
+be the beginning.</li>
+<li>We're determined. Not only because of the profit involved, not only bec=
+ause of its entertainment value, but because we need something to worship. =
+We want a god.</li>
+</ul>
+<div class=3D"heading-wrapper"><h4 id=3D"4">.4</h4></div>
+<p><em>We want a god</em>. Something to pray to, something to admire, somet=
+hing to grant us meaning, hope, and purpose. The more our lives are filled =
+with petty sedentary activities - sitting, typing, staring, thinking, worry=
+ing, consuming, shopping, collating, organizing, labeling, bickering, scrol=
+ling - the more urgent this need. We want the golden calf: we beg our brigh=
+test children to forge it for us. We lavish praise and reward on those who =
+create the anticipatory illusions. We want a priesthood of scientist-engine=
+er to give us this god: an illusion so overwhelming, so universally admired=
+ that we can all agree to bow down and feel the presence of the sacred.</p>
+<div class=3D"heading-wrapper"><h4 id=3D"5">.5</h4></div>
+<p>The Egyptians understood how to create things so incredible that no one =
+could doubt their divinity: a perfect gleaming geometry rising from the cha=
+os of the sand. A three thousand year illusion, a special effect built on u=
+nthinkable misery and sacrifice, an insurance policy against revolt.</p>
+<p>Notice however, that as antiquity dragged on, the big gods no longer suf=
+ficed. Personal gods proliferated, becoming indispensable by late antiquity=
+: the birth of the individual necessitates the personal divinity. It's the =
+<em>psychosomatic profile</em> of this origin we should be paying attention=
+ to: anxiety, alienation, an ever shrinking horizon of concern - the fretti=
+ng worried human creature who needs to be told, at any given moment, that i=
+t's going to be okay. The need <em>to quiet the voices in our head</em>: th=
+is is the origin of modern morality, modern consciousness, and ultimately m=
+odern religion.</p>
+<div class=3D"heading-wrapper"><h4 id=3D"6">.6</h4></div>
+<p>In 1900, two nobodies from Ohio were able to push the boundaries of aero=
+nautics by building their own airplane. 50 years after the Wright brothers,=
+ and it required thousands of engineers to design and build the jet fighter=
+, but the fundamental theory hadn't changed. And since then, aeronautics ha=
+s hardly budged: commercial flights use a design essentially unchanged sinc=
+e the 1970s.</p>
+<p>But the comparison with the space race is even more apt: as soon as we a=
+chieved it, we quit. Because <em>there's nothing there</em>. There's nothin=
+g on the moon that isn't represented a million times over here at home. <em=
+>Earth is the most interesting planet</em>. Just as the immense well of lif=
+e here is a million times more interesting and intelligent than everything =
+"artificial".</p>
+<p>The problem is not that there's nothing to learn from this squirming dir=
+ty bowl, it's that we're <em>unequal</em> to it: we lack not only the humil=
+ity but the imagination - and perhaps the <em>intelligence</em> to study li=
+fe.</p>
+<div class=3D"heading-wrapper"><h4 id=3D"7">.7</h4></div>
+<p>We've got something called the History Channel whose primary message is =
+"everything worthy in humanity is extraterrestrial". Obviously this is what=
+ sells, but consider what it means that this is the kind of history continu=
+ously fed to the lower classes, that this and other conspiracy theories for=
+ms their sacrament, in those gaps where only a generation ago the church wo=
+uld have been. I know because I come from this class: they need gods. Human=
+ity hungers for mythology, divinity, theogony. Some of the hipsters have ev=
+en become aware of the need, and labor to resuscitate Christ and mold their=
+ conscience around some rebaptized theology. There is an increasingly commo=
+n consensus that the gods must return one way or another, and the wiseacre =
+is positioning himself in anticipation of the priesthoods of the future.</p=
+>
+<div class=3D"heading-wrapper"><h4 id=3D"8">.8</h4></div>
+<p>Because of my background I've had the opportunity to talk with some of t=
+he players near the leading edge of AI. In their less guarded moments, they=
+'ll come close to admitting most of what I've said. Especially those system=
+s engineers, whose job it is to duct-tape together these expensive illusion=
+s, have seen too much of the internals to believe in the magic. They won't =
+admit it publicly because it's their livelihood: the illusion sells. Those =
+in leadership positions understand implicitly, that the task at hand is to =
+form a <em>new priesthood</em>: this accounts for the concern for an "ethic=
+al AI". The goal is to produce a <em>deployable moral police</em> backed wi=
+th the authority of science, which will enforce those values supportive of =
+this emergent technocratic priesthood.</p>
+<p>But don't get me wrong: there's no grand conspiracy. These are just rich=
+ kids and Stanford alums trying to give the crowds what they want - despera=
+tely, cloyingly, urgently. These are the artisans of the gods - in another =
+era they would have just been predatory lawyers. The sooner they realize th=
+e priestly role, the sooner they'll develop a more compelling aesthetic: th=
+ey haven't yet learned to capitalize on mystery and authority. When they st=
+op trying to appease investors with yet another kindergarten-HR-morality-cl=
+erk, and learn to craft an enigmatic godchild, a more interesting era can b=
+egin.</p>
+            </div>
+
+            <hr/>
+
+           =20
+                <div class=3D"newsletter-footer">
+                    <h2><a href=3D"https://www.bartholomy.ooo/study" target=
+=3D"_blank">Study with Bartholomy</a></h2>
+<p><img alt=3D"headshot" class=3D"newsletter-image" src=3D"https://www.bart=
+holomy.ooo/headshot_150px.png"/></p>
+<p class=3D"copyright">
+=C2=A9 2024 hautogdoad
+</p>
+                </div>
+           =20
+
+            <div class=3D"newsletter-colophon">
+                <p>
+                   =20
+                       =20
+                           =20
+                                This was issue #67 of bartholomy.
+                           =20
+                       =20
+                   =20
+                   =20
+                       =20
+                            You can <a href=3D"https://buttondown.com/barth=
+olomy">subscribe</a>
+                            or <a href=3D"https://buttondown.com/unsubscrib=
+e/">unsubscribe</a>.
+                       =20
+                   =20
+                </p>
+               =20
+               =20
+               =20
+
+               =20
+
+               =20
+                    <p>
+                       =20
+                            This email brought to you by <a href=3D"https:/=
+/buttondown.com/refer/bartholomy">Buttondown</a>, the easiest way to start =
+and grow your newsletter.
+                       =20
+                    </p>
+               =20
+
+               =20
+            </div>
+
+        </div>
+    </body>
+</html>

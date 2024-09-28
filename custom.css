@@ -1,0 +1,189 @@
+<html lang="en" xml:lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+        <style type="text/css">
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+table,
+tr,
+td,
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+p,
+div,
+ul,
+li {
+  max-width: 100%;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+}
+
+th,
+td {
+    border-bottom: 1px solid;
+}
+
+th {
+    font-weight: 700;
+}
+
+.newsletter-container {
+    width: 720px;
+}
+
+.newsletter-body {
+    margin-bottom: 20px;
+}
+
+.bth-header, .newsletter-footer, .newsletter-colophon {
+    color: #c09030;
+    background-color: #180904;
+    border-radius: 10px;
+    padding: 50px 0;
+    margin: 20px 0 20px 0;
+}
+
+.newsletter-footer {
+    margin: 50px 0 20px 0;
+    padding: 50px 0 20px 0;
+}
+
+.newsletter-footer img {
+    width: 15%;
+}
+
+.newsletter-footer p, .newsletter-footer h2 {
+    text-align: center;
+}
+
+.newsletter-footer p.copyright {
+    color: #6e4522;
+    font-size: 14px;
+}
+
+.newsletter-colophon {
+    padding: 12px 12px 0 12px;
+}
+
+/* this feel disingenuous. I hate small unsubscribe links. */
+/* .newsletter-colophon p { */
+/*     font-size: 14px; */
+/* } */
+
+.bth-header h1, .bth-header h2 {
+    text-align: center;
+}
+
+.bth-header-link {
+    margin: 20px 20px 0 0;
+    text-align: center;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px #c65108 solid;
+  max-width: 50%;
+  margin: 1.8em auto;
+}
+
+.newsletter-body + hr {
+  display: none;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+img {
+  max-width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+div.audio {
+    margin: 3em 0;
+}
+
+audio {
+    width: 100%;
+    background-color: #c65108;
+}
+
+blockquote {
+  color: #6e4522;
+  border-left: 4px solid #c65108;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+figcaption {
+  color: #7d828a;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0.25em;
+}
+
+.newsletter-notice {
+  background-color: #d9edf7;
+  color: #c65108;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px 30px;
+}
+
+pre {
+  color: #d6c59f;
+  background: #6e4522;
+  border-radius: 0 0.25rem 0.25rem 0;
+  overflow-x: auto;
+  padding: 1em;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.codehilite pre {
+  background: none;
+}
+
+code {
+  color: #d6c59f;
+  background: #6e4522;
+  border-radius: 0 0.25rem 0.25rem 0;
+  font-size: 14px;
+  padding: 3px 6px;
+}
+        </style>
+    </head>

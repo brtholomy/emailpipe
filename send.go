@@ -2,60 +2,52 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
-	"mime/multipart"
 	"net/http"
 	"os"
-	"strings"
 )
 
-func SendEmail(content string, subject string) error {
-	key := os.Getenv("MAILGUN_TEST_API_KEY")
+type EmailPayload struct {
+	Subject string `json:"subject"`
+	Body    string `json:"body"`
+	Status  string `json:"status"`
+}
+
+func SendEmail(content string, css string, subject string, status string) error {
+	endpoint := "https://api.buttondown.email/v1/emails"
+	key := os.Getenv("BUTTONDOWN_TEST_API_KEY")
 	if key == "" {
 		panic("no api key found")
 	}
-	endpoint := "https://api.mailgun.net/v3/sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org/messages"
+	// FIXME: buttondown doesn't like css here. may be impossible to inject via
+	// the API?
+	content = css + content + "</div></body></html>"
 
-	fields := make(map[string]string)
-	fields["from"] = "bth  <mailgun@sandbox1e7a4321500241bc88fbd6fb1ad7d544.mailgun.org>"
-	fields["to"] = "test@hautogdoad.com"
-	fields["subject"] = subject
-	fields["text"] = content
-
-	data := &bytes.Buffer{}
-	writer := multipart.NewWriter(data)
-
-	for field, val := range fields {
-		formfield, _ := writer.CreateFormField(field)
-		_, err := io.Copy(formfield, strings.NewReader(val))
-		if err != nil {
-			return err
-		}
-	}
-	writer.Close()
-
-	payload := bytes.NewReader(data.Bytes())
-	req, err := http.NewRequest("POST", endpoint, payload)
+	payload := EmailPayload{subject, content, status}
+	b, err := json.Marshal(payload)
 	if err != nil {
 		return err
 	}
+	r := bytes.NewReader(b)
 
-	req.SetBasicAuth("api", key)
-	req.Header.Add("Content-Type", writer.FormDataContentType())
+	req, err := http.NewRequest("POST", endpoint, r)
+	if err != nil {
+		return err
+	}
+	req.Header.Add("Authorization", "Token "+key)
+	req.Header.Add("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
-	defer res.Body.Close()
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
-
-	fmt.Println(res)
 	fmt.Println(string(body))
 	return nil
 }
