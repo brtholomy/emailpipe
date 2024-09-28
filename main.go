@@ -3,13 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
 )
 
 var source = flag.String("source", "./sample.xml", "path to source .xml file")
-var css = flag.String("css", "./custom.css", "path to .css file")
 var slug = flag.String("slug", "why-fractals", "slug of the post to publish")
-var draft = flag.Bool("draft", true, "whether to send a draft")
+var status = flag.String("status", "draft", "status can be 'draft' or 'about_to_send'")
 
 func main() {
 	flag.Parse()
@@ -19,22 +17,16 @@ func main() {
 		panic(err)
 	}
 
-	dat, err := os.ReadFile(*css)
-	if err != nil {
-		panic(err)
-	}
-	cssstr := string(dat)
-
 	fmt.Println(i.Title)
 	fmt.Println(i.Description)
 
-	var status string
-	if *draft {
-		status = "draft"
-	} else {
-		status = "sent"
-	}
-	if err := SendEmail(i.Content, cssstr, i.Title, status); err != nil {
+	body, err := SendEmail(&i.Content, &i.Title, status)
+	if err != nil {
 		panic(err)
 	}
+	// TODO: loop every time like this:
+	// 1. send draft, save id
+	// 2. pause and ask for confirmation to send to all
+	// 3. use the return id to send
+	fmt.Println(string(body))
 }
