@@ -11,10 +11,11 @@ import (
 	"os"
 )
 
-// foo@hautogdoad.com:
+// foo@hautogdoad.com : specific to test account:
 var test_subscriber string = "b7c993fc-1baf-4ba7-81f5-e5cb096dcfa0"
 var tbartholomy string = "t@bartholomy.ooo"
 var baseurl string = "https://api.buttondown.email/v1/emails"
+var final_status string = "about_to_send"
 
 type EmailPayload struct {
 	// pointers to allow them to be "optional": nil value will json.Marshal
@@ -66,7 +67,7 @@ func SendEmail(content *string, subject *string, status *string, email_id *strin
 	fmt.Println("email_id:", resp.Id)
 	endpoint, _ = url.JoinPath(baseurl, resp.Id, "send-draft")
 	payload.Recipients = []string{tbartholomy}
-	payload.Subscribers = []string{test_subscriber}
+	// payload.Subscribers = []string{test_subscriber}
 	res, err = SendPayload(payload, endpoint)
 	if err != nil {
 		return nil, err
@@ -80,18 +81,17 @@ func SendEmail(content *string, subject *string, status *string, email_id *strin
 		return nil, err
 	}
 	if Answer == "Y" {
-		// NOTE: difference is no /send-draft at the end, and status="about_to_send"
-		// TODO: this isn't working. why? keep getting "method not allowed"
+		// NOTE: difference is no /send-draft at the end, and
+		// status="about_to_send", and "PATCH" method
 		endpoint, _ = url.JoinPath(baseurl, resp.Id)
-		stat := "about_to_send"
-		payload = EmailPayload{nil, nil, &stat, nil, nil}
-		return SendPayload(payload, endpoint)
+		payload = EmailPayload{nil, nil, &final_status, nil, nil}
+		return SendPayload(payload, endpoint, "PATCH")
 	}
 	fmt.Println("quitting")
 	return res, nil
 }
 
-func SendPayload(payload EmailPayload, endpoint string) ([]byte, error) {
+func SendPayload(payload EmailPayload, endpoint string, methods ...string) ([]byte, error) {
 	key := os.Getenv("BUTTONDOWN_TEST_API_KEY")
 	if key == "" {
 		return nil, errors.New("no api key found")
@@ -103,7 +103,12 @@ func SendPayload(payload EmailPayload, endpoint string) ([]byte, error) {
 	}
 	r := bytes.NewReader(b)
 
-	req, err := http.NewRequest("POST", endpoint, r)
+	// NOTE: effective default param
+	method := "POST"
+	if len(methods) > 0 {
+		method = methods[0]
+	}
+	req, err := http.NewRequest(method, endpoint, r)
 	if err != nil {
 		return nil, err
 	}

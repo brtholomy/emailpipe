@@ -18,7 +18,6 @@ func main() {
 		panic(err)
 	}
 
-	i.Title = "foo bar!"
 	fmt.Println(i.Title)
 	fmt.Println(i.Description)
 
