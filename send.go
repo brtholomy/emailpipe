@@ -38,8 +38,8 @@ type ResponsePayload struct {
 // also possible to feed in the email_id directly, if status="about_to_send"
 func SendEmail(content *string, subject *string, status *string, email_id *string) ([]byte, error) {
 	payload := EmailPayload{subject, content, status, nil, nil}
-
 	var endpoint string
+
 	// skip directly to prod if draft aleady exists:
 	if *status == "about_to_send" {
 		if *email_id == "" {
@@ -75,12 +75,12 @@ func SendEmail(content *string, subject *string, status *string, email_id *strin
 
 	// continue to prod
 	fmt.Println("sent draft. continue to prod? Y/n:")
-	var Answer string
-	_, err = fmt.Scanln(&Answer)
+	var answer string
+	_, err = fmt.Scanln(&answer)
 	if err != nil {
 		return nil, err
 	}
-	if Answer == "Y" {
+	if answer == "Y" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
 		endpoint, _ = url.JoinPath(baseurl, resp.Id)
