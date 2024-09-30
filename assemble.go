@@ -10,14 +10,14 @@ import (
 )
 
 var localhost string = "http://localhost:1313/"
-var prod string = "https://www.bartholomy.ooo/"
+var prodhost string = "https://www.bartholomy.ooo/"
 
 func CreateTemplate(name, t string) *template.Template {
 	return template.Must(template.New(name).Parse(t))
 }
 
-func Assemble(post *Post, tmpl_path *string) (*string, error) {
-	dat, err := os.ReadFile(*tmpl_path)
+func Assemble(post *Post, opts *Options) (*string, error) {
+	dat, err := os.ReadFile(opts.Template)
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +29,7 @@ func Assemble(post *Post, tmpl_path *string) (*string, error) {
 	}
 
 	c := buf.String()
-	c = strings.ReplaceAll(c, localhost, prod)
+	c = strings.ReplaceAll(c, localhost, prodhost)
 	if strings.Contains(c, "localhost") {
 		return nil, errors.New("hostname replace failed")
 	}

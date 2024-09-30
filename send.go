@@ -11,11 +11,17 @@ import (
 	"os"
 )
 
-// foo@hautogdoad.com : specific to test account:
-var test_subscriber string = "b7c993fc-1baf-4ba7-81f5-e5cb096dcfa0"
-var tbartholomy string = "t@bartholomy.ooo"
+var secret_source string = "./SECRETS.json"
 var baseurl string = "https://api.buttondown.email/v1/emails"
 var final_status string = "about_to_send"
+
+type Secrets struct {
+	Test_buttondown_api_key string `json:test_buttondown_api_key`
+	Prod_buttondown_api_key string `json:prod_buttondown_api_key`
+	Key                     string `json:key`
+	Test_email              string `json:test_email`
+	Test_subscriber         string `json:test_subscriber`
+}
 
 type EmailPayload struct {
 	// pointers to allow them to be "optional": nil value will json.Marshal
@@ -31,27 +37,42 @@ type ResponsePayload struct {
 	Status string `json:"status"`
 }
 
+func GetSecrets(prod bool) (*Secrets, error) {
+	dat, err := os.ReadFile(secret_source)
+	if err != nil {
+		return nil, err
+	}
+	var secrets Secrets
+	if err := json.Unmarshal(dat, &secrets); err != nil {
+		return nil, err
+	}
+	secrets.Key = secrets.Test_buttondown_api_key
+	if prod {
+		secrets.Key = secrets.Prod_buttondown_api_key
+	}
+	return &secrets, nil
+}
+
 // Loops like this:
 // 1. send draft, save id
 // 2. pause and ask for confirmation to send to all
 // 3. use the return id to send
 // also possible to feed in the email_id directly, if status="about_to_send"
-func SendEmail(content *string, subject *string, status *string, email_id *string) ([]byte, error) {
-	payload := EmailPayload{subject, content, status, nil, nil}
-	var endpoint string
+func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) {
+	payload := EmailPayload{subject, content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
 	if *status == "about_to_send" {
 		if *email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
-		endpoint, _ = url.JoinPath(baseurl, *email_id)
-		return SendPayload(payload, endpoint)
+		opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id)
+		return SendPayload(payload, opts)
 	}
 
 	// create draft
-	endpoint = baseurl
-	res, err := SendPayload(payload, endpoint)
+	opts.Endpoint = baseurl
+	res, err := SendPayload(payload, opts)
 	if err != nil {
 		return nil, err
 	}
@@ -65,10 +86,10 @@ func SendEmail(content *string, subject *string, status *string, email_id *strin
 
 	// send draft
 	fmt.Println("email_id:", resp.Id)
-	endpoint, _ = url.JoinPath(baseurl, resp.Id, "send-draft")
-	payload.Recipients = []string{tbartholomy}
-	// payload.Subscribers = []string{test_subscriber}
-	res, err = SendPayload(payload, endpoint)
+	opts.Endpoint, _ = url.JoinPath(baseurl, resp.Id, "send-draft")
+	payload.Recipients = []string{opts.Secrets.Test_email}
+	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
+	res, err = SendPayload(payload, opts)
 	if err != nil {
 		return nil, err
 	}
@@ -83,36 +104,27 @@ func SendEmail(content *string, subject *string, status *string, email_id *strin
 	if answer == "Y" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
-		endpoint, _ = url.JoinPath(baseurl, resp.Id)
+		opts.Endpoint, _ = url.JoinPath(baseurl, resp.Id)
 		payload = EmailPayload{nil, nil, &final_status, nil, nil}
-		return SendPayload(payload, endpoint, "PATCH")
+		opts.Method = "PATCH"
+		return SendPayload(payload, opts)
 	}
 	fmt.Println("quitting")
 	return res, nil
 }
 
-func SendPayload(payload EmailPayload, endpoint string, methods ...string) ([]byte, error) {
-	key := os.Getenv("BUTTONDOWN_TEST_API_KEY")
-	if key == "" {
-		return nil, errors.New("no api key found")
-	}
-
+func SendPayload(payload EmailPayload, opts *Options) ([]byte, error) {
 	b, err := json.Marshal(payload)
 	if err != nil {
 		return nil, err
 	}
 	r := bytes.NewReader(b)
 
-	// NOTE: effective default param
-	method := "POST"
-	if len(methods) > 0 {
-		method = methods[0]
-	}
-	req, err := http.NewRequest(method, endpoint, r)
+	req, err := http.NewRequest(opts.Method, opts.Endpoint, r)
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("Authorization", "Token "+key)
+	req.Header.Add("Authorization", "Token "+opts.Secrets.Key)
 	req.Header.Add("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
