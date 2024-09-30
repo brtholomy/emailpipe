@@ -1,0 +1,22 @@
+<div class="bth-header">
+  <h1>
+    {{ .Title }}
+  </h1>
+  <h2>
+    {{ .Description }}
+  </h2>
+
+{{ if .Enclosure }}
+  <a href="{{ .Link }}" >
+    <img src="{{ .Enclosure.Url }}" alt="{{ .Title }}"/>
+  </a>
+{{ end }}
+
+  <p class="bth-header-link">
+    <a href="{{ .Link }}" >
+      Read it on bartholomy.ooo
+    </a>
+  </p>
+</div>
+
+{{ .Content }}
