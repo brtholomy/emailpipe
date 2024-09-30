@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/url"
 	"os"
-	"strings"
+	"path/filepath"
 )
 
 type Enclosure struct {
@@ -30,7 +30,7 @@ type RSS struct {
 func GetSlug(rss *RSS, slug string) (*Post, error) {
 	for _, i := range rss.Items {
 		u, _ := url.Parse(i.Link)
-		if strings.Contains(u.Path, slug) {
+		if filepath.Join("/posts/", slug) == filepath.Clean(u.Path) {
 			return i, nil
 		}
 	}

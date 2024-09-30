@@ -62,8 +62,8 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 	payload := EmailPayload{subject, content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
-	if *status == "about_to_send" {
-		if *email_id == "" {
+	if opts.Status == "about_to_send" {
+		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
 		opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id)
@@ -84,9 +84,10 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 		return nil, errors.New("return status is not draft, cancelling send")
 	}
 
-	// send draft
-	fmt.Println("email_id:", resp.Id)
-	opts.Endpoint, _ = url.JoinPath(baseurl, resp.Id, "send-draft")
+	// send draft using return id
+	opts.Email_id = resp.Id
+	fmt.Println("email_id:", opts.Email_id)
+	opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id, "send-draft")
 	payload.Recipients = []string{opts.Secrets.Test_email}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
 	res, err = SendPayload(payload, opts)
@@ -104,9 +105,10 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 	if answer == "Y" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
-		opts.Endpoint, _ = url.JoinPath(baseurl, resp.Id)
-		payload = EmailPayload{nil, nil, &final_status, nil, nil}
+		opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id)
 		opts.Method = "PATCH"
+		opts.Status = final_status
+		payload = EmailPayload{nil, nil, &opts.Status, nil, nil}
 		return SendPayload(payload, opts)
 	}
 	fmt.Println("quitting")
