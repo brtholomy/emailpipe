@@ -11,9 +11,9 @@ import (
 	"os"
 )
 
-var secret_source string = "./SECRETS.json"
-var baseurl string = "https://api.buttondown.email/v1/emails"
-var final_status string = "about_to_send"
+const SECRET_SOURCE string = "./SECRETS.json"
+const BASEURL string = "https://api.buttondown.email/v1/emails"
+const FINAL_STATUS string = "about_to_send"
 
 type Secrets struct {
 	Test_buttondown_api_key string `json:test_buttondown_api_key`
@@ -38,7 +38,7 @@ type ResponsePayload struct {
 }
 
 func GetSecrets(prod bool) (*Secrets, error) {
-	dat, err := os.ReadFile(secret_source)
+	dat, err := os.ReadFile(SECRET_SOURCE)
 	if err != nil {
 		return nil, err
 	}
@@ -66,12 +66,12 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
-		opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id)
+		opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id)
 		return SendPayload(payload, opts)
 	}
 
 	// create draft
-	opts.Endpoint = baseurl
+	opts.Endpoint = BASEURL
 	res, err := SendPayload(payload, opts)
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 	// send draft using return id
 	opts.Email_id = resp.Id
 	fmt.Println("email_id:", opts.Email_id)
-	opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id, "send-draft")
+	opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id, "send-draft")
 	payload.Recipients = []string{opts.Secrets.Test_email}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
 	res, err = SendPayload(payload, opts)
@@ -105,9 +105,9 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 	if answer == "Y" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
-		opts.Endpoint, _ = url.JoinPath(baseurl, opts.Email_id)
+		opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id)
 		opts.Method = "PATCH"
-		opts.Status = final_status
+		opts.Status = FINAL_STATUS
 		payload = EmailPayload{nil, nil, &opts.Status, nil, nil}
 		return SendPayload(payload, opts)
 	}

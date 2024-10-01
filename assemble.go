@@ -9,8 +9,8 @@ import (
 	"text/template"
 )
 
-var localhost string = "http://localhost:1313/"
-var prodhost string = "https://www.bartholomy.ooo/"
+const LOCALHOST string = "http://localhost:1313/"
+const PRODHOST string = "https://www.bartholomy.ooo/"
 
 func CreateTemplate(name, t string) *template.Template {
 	return template.Must(template.New(name).Parse(t))
@@ -29,7 +29,7 @@ func Assemble(post *Post, opts *Options) (*string, error) {
 	}
 
 	c := buf.String()
-	c = strings.ReplaceAll(c, localhost, prodhost)
+	c = strings.ReplaceAll(c, LOCALHOST, PRODHOST)
 	if strings.Contains(c, "localhost") {
 		return nil, errors.New("hostname replace failed")
 	}
