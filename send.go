@@ -96,13 +96,13 @@ func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) 
 	}
 
 	// continue to prod
-	fmt.Println("sent draft. continue to prod? Y/n:")
+	fmt.Println("sent draft. send to all subscribers? Yes/n:")
 	var answer string
 	_, err = fmt.Scanln(&answer)
 	if err != nil {
 		return nil, err
 	}
-	if answer == "Y" {
+	if answer == "Yes" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
 		opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id)
