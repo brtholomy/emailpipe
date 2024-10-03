@@ -38,12 +38,12 @@ func main() {
 	fmt.Println(post.Title)
 	fmt.Println(post.Link)
 
-	content, err := Assemble(post, &opts)
+	post, err = Assemble(post, &opts)
 	if err != nil {
 		panic(err)
 	}
 
-	body, err := SendEmail(content, &post.Title, &opts)
+	body, err := SendEmail(post, &opts)
 	if err != nil {
 		panic(err)
 	}

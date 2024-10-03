@@ -37,6 +37,7 @@ func GetSlug(rss *RSS, slug string) (*Post, error) {
 	return nil, errors.New("didn't find the slug")
 }
 
+// Returns a *Post by matching the opts.Slug against the opts.Source.
 func ExtractPost(opts *Options) (*Post, error) {
 	dat, _ := os.ReadFile(opts.Source)
 	var rss RSS

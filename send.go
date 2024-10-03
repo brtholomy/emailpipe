@@ -37,6 +37,7 @@ type ResponsePayload struct {
 	Status string `json:"status"`
 }
 
+// Fill out Secrets struct from .gitignore'd SECRET_SOURCE.
 func GetSecrets(prod bool) (*Secrets, error) {
 	dat, err := os.ReadFile(SECRET_SOURCE)
 	if err != nil {
@@ -46,6 +47,7 @@ func GetSecrets(prod bool) (*Secrets, error) {
 	if err := json.Unmarshal(dat, &secrets); err != nil {
 		return nil, err
 	}
+	// NOTE: .Key is left initially empty by design.
 	secrets.Key = secrets.Test_buttondown_api_key
 	if prod {
 		secrets.Key = secrets.Prod_buttondown_api_key
@@ -53,13 +55,17 @@ func GetSecrets(prod bool) (*Secrets, error) {
 	return &secrets, nil
 }
 
-// Loops like this:
-// 1. send draft, save id
-// 2. pause and ask for confirmation to send to all
-// 3. use the return id to send
-// also possible to feed in the email_id directly, if status="about_to_send"
-func SendEmail(content *string, subject *string, opts *Options) ([]byte, error) {
-	payload := EmailPayload{subject, content, &opts.Status, nil, nil}
+// Send the Post using the Options.
+//
+// Proceeds like this:
+//
+// 1. create and send draft, save opts.Email_id.
+// 2. pause and ask for confirmation to send to all.
+// 3. use the response email_id to send.
+//
+// Also possible to feed in the opts.Email_id directly, if opts.Status=="about_to_send"
+func SendEmail(post *Post, opts *Options) ([]byte, error) {
+	payload := EmailPayload{&post.Title, &post.Content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
 	if opts.Status == "about_to_send" {
@@ -126,6 +132,8 @@ func SendPayload(payload EmailPayload, opts *Options) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	// NOTE: buttondown expects "Token key", standard seems to be "Bearer key"
+	// NOTE: mailgun expects BasicAuth, with "api" as username.
 	req.Header.Add("Authorization", "Token "+opts.Secrets.Key)
 	req.Header.Add("Content-Type", "application/json")
 

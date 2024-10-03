@@ -16,7 +16,9 @@ func CreateTemplate(name, t string) *template.Template {
 	return template.Must(template.New(name).Parse(t))
 }
 
-func Assemble(post *Post, opts *Options) (*string, error) {
+// Assembles the post.Content using the provided opts.Template.
+// Also replaces LOCALHOST with PRODHOST.
+func Assemble(post *Post, opts *Options) (*Post, error) {
 	dat, err := os.ReadFile(opts.Template)
 	if err != nil {
 		return nil, err
@@ -33,5 +35,6 @@ func Assemble(post *Post, opts *Options) (*string, error) {
 	if strings.Contains(c, "localhost") {
 		return nil, errors.New("hostname replace failed")
 	}
-	return &c, nil
+	post.Content = c
+	return post, nil
 }
