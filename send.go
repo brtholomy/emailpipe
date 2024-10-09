@@ -72,7 +72,10 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
-		opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id)
+		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
+		if err != nil {
+			return nil, err
+		}
 		return SendPayload(payload, opts)
 	}
 
@@ -93,7 +96,10 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	// send draft using return id
 	opts.Email_id = resp.Id
 	fmt.Println("email_id:", opts.Email_id)
-	opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id, "send-draft")
+	opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id, "send-draft")
+	if err != nil {
+		return nil, err
+	}
 	payload.Recipients = []string{opts.Secrets.Test_email}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
 	res, err = SendPayload(payload, opts)
@@ -104,14 +110,16 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	// continue to prod
 	fmt.Println("sent draft. send to all subscribers? Yes/n:")
 	var answer string
-	_, err = fmt.Scanln(&answer)
-	if err != nil {
+	if _, err := fmt.Scanln(&answer); err != nil {
 		return nil, err
 	}
 	if answer == "Yes" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
-		opts.Endpoint, _ = url.JoinPath(BASEURL, opts.Email_id)
+		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
+		if err != nil {
+			return nil, err
+		}
 		opts.Method = "PATCH"
 		opts.Status = FINAL_STATUS
 		payload = EmailPayload{nil, nil, &opts.Status, nil, nil}
