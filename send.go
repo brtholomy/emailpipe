@@ -72,6 +72,7 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
+		var err error
 		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
 		if err != nil {
 			return nil, err
