@@ -27,10 +27,13 @@ type RSS struct {
 	Items   []*Post  `xml:"channel>item"`
 }
 
-func GetSlug(rss *RSS, slug string) (*Post, error) {
+func GetSlug(rss *RSS, opts *Options) (*Post, error) {
+	if opts.Slug == "" {
+		return nil, errors.New("--slug flag can't be empty")
+	}
 	for _, i := range rss.Items {
 		u, _ := url.Parse(i.Link)
-		if filepath.Join("/posts/", slug) == filepath.Clean(u.Path) {
+		if filepath.Join("/posts/", opts.Slug) == filepath.Clean(u.Path) {
 			return i, nil
 		}
 	}
@@ -44,7 +47,7 @@ func ExtractPost(opts *Options) (*Post, error) {
 	if err := xml.Unmarshal(dat, &rss); err != nil {
 		return nil, err
 	}
-	i, err := GetSlug(&rss, opts.Slug)
+	i, err := GetSlug(&rss, opts)
 	if err != nil {
 		return nil, err
 	}
