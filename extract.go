@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"path/filepath"
 )
 
@@ -41,14 +42,50 @@ func GetSlug(rss *RSS, opts *Options) (*Post, error) {
 	return nil, errors.New("didn't find the slug")
 }
 
+func isURL(str string) bool {
+	u, err := url.ParseRequestURI(str)
+	return err == nil && u.Scheme != "" && u.Host != ""
+}
+
+func isFilePath(str string) bool {
+	if !filepath.IsAbs(str) {
+		// make absolute
+		absPath, err := filepath.Abs(str)
+		if err != nil {
+			return false
+		}
+		str = absPath
+	}
+	_, err := os.Stat(str)
+	return err == nil
+}
+
+// gets the []byte content of either a URL or file.
+func GetUrlOrFile(opts *Options) ([]byte, error) {
+	var dat []byte
+	var err error
+	if isURL(opts.Source) {
+		resp, err := http.Get(opts.Source)
+		defer resp.Body.Close()
+		if err != nil {
+			return nil, err
+		}
+		dat, err = ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+	} else if isFilePath(opts.Source) {
+		dat, err = os.ReadFile(opts.Source)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return dat, nil
+}
+
 // Returns a *Post by matching the opts.Slug against the opts.Source.
 func ExtractPost(opts *Options) (*Post, error) {
-	resp, err := http.Get(opts.Source)
-	defer resp.Body.Close()
-	if err != nil {
-		return nil, err
-	}
-	dat, err := ioutil.ReadAll(resp.Body)
+	dat, err := GetUrlOrFile(opts)
 	if err != nil {
 		return nil, err
 	}
