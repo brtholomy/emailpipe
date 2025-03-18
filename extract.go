@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/xml"
 	"errors"
+	"io/ioutil"
+	"net/http"
 	"net/url"
-	"os"
 	"path/filepath"
 )
 
@@ -42,7 +43,15 @@ func GetSlug(rss *RSS, opts *Options) (*Post, error) {
 
 // Returns a *Post by matching the opts.Slug against the opts.Source.
 func ExtractPost(opts *Options) (*Post, error) {
-	dat, _ := os.ReadFile(opts.Source)
+	resp, err := http.Get(opts.Source)
+	defer resp.Body.Close()
+	if err != nil {
+		return nil, err
+	}
+	dat, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
 	var rss RSS
 	if err := xml.Unmarshal(dat, &rss); err != nil {
 		return nil, err

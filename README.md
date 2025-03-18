@@ -6,6 +6,8 @@ How to send to production:
 ./emailpipe --slug glossolalia --prod
 ```
 
-## TODO
+To read from local RSS rather than the default bartholomy.ooo live URL:
 
-* curl from the live RSS rather than local.
+```sh
+./emailpipe --slug glossolalia --source "/home/bth/y/dev/bartholomy.ooo/public/posts/index.xml"
+```
