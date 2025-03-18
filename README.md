@@ -1,5 +1,9 @@
 This is my emailpipe. There are many like it, but this one is mine.
 
+It parses a given RSS XML file, matches an `<item><link>` against a given `--slug`, assembles the HTML email using the provided template, and sends the email via the Buttondown API.
+
+---
+
 How to send to production:
 
 ```sh
