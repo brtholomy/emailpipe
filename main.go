@@ -22,10 +22,11 @@ func main() {
 	var slug = flag.String("slug", "", "slug of the post to publish")
 	var status = flag.String("status", "draft", "status can be 'draft' or 'about_to_send'")
 	var email_id = flag.String("email_id", "", "id of draft email previously created")
+	var test_address = flag.String("test_address", "", "email address to receive the draft, defaults to Secrets.Test_address")
 	var prod = flag.Bool("prod", false, "whether to send to real prod account")
 	flag.Parse()
 
-	secrets, err := GetSecrets(*prod)
+	secrets, err := GetSecrets(*prod, *test_address)
 	if err != nil {
 		panic(err)
 	}

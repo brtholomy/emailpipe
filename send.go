@@ -19,7 +19,7 @@ type Secrets struct {
 	Test_buttondown_api_key string `json:test_buttondown_api_key`
 	Prod_buttondown_api_key string `json:prod_buttondown_api_key`
 	Key                     string `json:key`
-	Test_email              string `json:test_email`
+	Test_address            string `json:test_address`
 	Test_subscriber         string `json:test_subscriber`
 }
 
@@ -38,7 +38,7 @@ type ResponsePayload struct {
 }
 
 // Fill out Secrets struct from .gitignore'd SECRET_SOURCE.
-func GetSecrets(prod bool) (*Secrets, error) {
+func GetSecrets(prod bool, test_address string) (*Secrets, error) {
 	dat, err := os.ReadFile(SECRET_SOURCE)
 	if err != nil {
 		return nil, err
@@ -51,6 +51,9 @@ func GetSecrets(prod bool) (*Secrets, error) {
 	secrets.Key = secrets.Test_buttondown_api_key
 	if prod {
 		secrets.Key = secrets.Prod_buttondown_api_key
+	}
+	if test_address != "" {
+		secrets.Test_address = test_address
 	}
 	return &secrets, nil
 }
@@ -101,7 +104,7 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	payload.Recipients = []string{opts.Secrets.Test_email}
+	payload.Recipients = []string{opts.Secrets.Test_address}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
 	res, err = SendPayload(payload, opts)
 	if err != nil {
