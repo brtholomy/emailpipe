@@ -2,11 +2,13 @@
   <h1>
     {{ .Title }}
   </h1>
+  {{ with .Description }}
   <h2>
-    {{ .Description }}
+    {{ . }}
   </h2>
+{{ end }}
 
-{{ if .Enclosure }}
+{{ if .Enclosure.Url }}
   <a href="{{ .Link }}" >
     <img src="{{ .Enclosure.Url }}" alt="{{ .Title }}"/>
   </a>
