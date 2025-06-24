@@ -20,7 +20,8 @@ func main() {
 	var source = flag.String("source", "https://www.bartholomy.ooo/posts/index.xml", "path to source .xml file")
 	var template_path = flag.String("template_path", "./templates/template.html", "template path")
 	var slug = flag.String("slug", "", "slug of the post to publish")
-	var status = flag.String("status", "draft", "status can be 'draft' or 'about_to_send'")
+	var status = flag.String("status", STATUS_DRAFT, "status can be 'draft' or 'about_to_send'")
+	var method = flag.String("method", HTTP_POST, "HTTP method for initial call. Sending a draft requires PATCH")
 	var email_id = flag.String("email_id", "", "id of draft email previously created")
 	var test_address = flag.String("test_address", "", "email address to receive the draft, defaults to Secrets.Test_address")
 	var prod = flag.Bool("prod", false, "whether to send to real prod account")
@@ -30,7 +31,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	opts := Options{*source, *template_path, *status, *slug, *email_id, "", "POST", secrets}
+	opts := Options{*source, *template_path, *status, *slug, *email_id, "", *method, secrets}
 
 	post, err := ExtractPost(&opts)
 	if err != nil {

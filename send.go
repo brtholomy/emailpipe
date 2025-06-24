@@ -13,7 +13,11 @@ import (
 
 const SECRET_SOURCE string = "./SECRETS.json"
 const BASEURL string = "https://api.buttondown.email/v1/emails"
-const FINAL_STATUS string = "about_to_send"
+const ENDPOINT_SEND_DRAFT string = "send-draft"
+const STATUS_DRAFT string = "draft"
+const STATUS_FINAL string = "about_to_send"
+const HTTP_POST string = "POST"
+const HTTP_PATCH string = "PATCH"
 
 type Secrets struct {
 	Test_buttondown_api_key string `json:test_buttondown_api_key`
@@ -71,7 +75,7 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	payload := EmailPayload{&post.Title, &post.Content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
-	if opts.Status == "about_to_send" {
+	if opts.Status == STATUS_FINAL {
 		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
@@ -93,14 +97,14 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	if err := json.Unmarshal(res, &resp); err != nil {
 		return nil, err
 	}
-	if resp.Status != "draft" {
+	if resp.Status != STATUS_DRAFT {
 		return nil, errors.New("return status is not draft, cancelling send")
 	}
 
 	// send draft using return id
 	opts.Email_id = resp.Id
 	fmt.Println("email_id:", opts.Email_id)
-	opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id, "send-draft")
+	opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id, ENDPOINT_SEND_DRAFT)
 	if err != nil {
 		return nil, err
 	}
@@ -124,8 +128,8 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		opts.Method = "PATCH"
-		opts.Status = FINAL_STATUS
+		opts.Method = HTTP_PATCH
+		opts.Status = STATUS_FINAL
 		payload = EmailPayload{nil, nil, &opts.Status, nil, nil}
 		return SendPayload(payload, opts)
 	}
