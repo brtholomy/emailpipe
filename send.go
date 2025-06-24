@@ -130,7 +130,7 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		}
 		opts.Method = HTTP_PATCH
 		opts.Status = STATUS_FINAL
-		payload = EmailPayload{nil, nil, &opts.Status, nil, nil}
+		payload.Status = &opts.Status
 		return SendPayload(payload, opts)
 	}
 	fmt.Println("quitting")
