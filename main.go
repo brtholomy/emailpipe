@@ -45,10 +45,12 @@ func main() {
 		panic(err)
 	}
 
-	body, err := SendEmail(post, &opts)
+	resp, err := SendEmail(post, &opts)
 	if err != nil {
+		if resp != nil {
+			fmt.Println(resp.Status)
+		}
 		panic(err)
 	}
-
-	fmt.Println(string(body))
+	fmt.Println("final response status:", resp.Status)
 }

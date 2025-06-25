@@ -71,7 +71,7 @@ func GetSecrets(prod bool, test_address string) (*Secrets, error) {
 // 3. use the response email_id to send.
 //
 // Also possible to feed in the opts.Email_id directly, if opts.Status=="about_to_send"
-func SendEmail(post *Post, opts *Options) ([]byte, error) {
+func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
 	payload := EmailPayload{&post.Title, &post.Content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
@@ -79,7 +79,6 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		if opts.Email_id == "" {
 			return nil, errors.New("sending to prod requires an email_id of a draft")
 		}
-		var err error
 		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
 		if err != nil {
 			return nil, err
@@ -89,16 +88,13 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 
 	// create draft
 	opts.Endpoint = BASEURL
-	res, err := SendPayload(payload, opts)
-	if err != nil {
-		return nil, err
-	}
-	var resp ResponsePayload
-	if err := json.Unmarshal(res, &resp); err != nil {
-		return nil, err
+	resp, err = SendPayload(payload, opts)
+	// NOTE: resp should not be nil:
+	if err != nil || resp == nil {
+		return resp, err
 	}
 	if resp.Status != STATUS_DRAFT {
-		return nil, errors.New("return status is not draft, cancelling send")
+		return resp, errors.New("return status is not draft, cancelling send")
 	}
 
 	// send draft using return id
@@ -110,9 +106,10 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 	}
 	payload.Recipients = []string{opts.Secrets.Test_address}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
-	res, err = SendPayload(payload, opts)
+	// NOTE: the resp will be nil here because the return body is empty.
+	resp, err = SendPayload(payload, opts)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
 
 	// continue to prod
@@ -134,10 +131,10 @@ func SendEmail(post *Post, opts *Options) ([]byte, error) {
 		return SendPayload(payload, opts)
 	}
 	fmt.Println("quitting")
-	return res, nil
+	return resp, nil
 }
 
-func SendPayload(payload EmailPayload, opts *Options) ([]byte, error) {
+func SendPayload(payload EmailPayload, opts *Options) (*ResponsePayload, error) {
 	b, err := json.Marshal(payload)
 	if err != nil {
 		return nil, err
@@ -162,5 +159,13 @@ func SendPayload(payload EmailPayload, opts *Options) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return body, nil
+	var resp ResponsePayload
+	if len(body) != 0 {
+		if err := json.Unmarshal(body, &resp); err != nil {
+			return nil, err
+		}
+	} else {
+		fmt.Println("NOTE: response body empty, expected for endpoint:", ENDPOINT_SEND_DRAFT)
+	}
+	return &resp, nil
 }
