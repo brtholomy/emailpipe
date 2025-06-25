@@ -28,12 +28,13 @@ type Secrets struct {
 }
 
 type EmailPayload struct {
+	Status string `json:"status"`
 	// pointers to allow them to be "optional": nil value will json.Marshal
-	Subject     *string  `json:"subject"`
-	Body        *string  `json:"body"`
-	Status      *string  `json:"status"`
-	Recipients  []string `json:"recipients"`
-	Subscribers []string `json:"subscribers"`
+	// omitempty annotation will not create null JSON values.
+	Subject     *string  `json:"subject,omitempty"`
+	Body        *string  `json:"body,omitempty"`
+	Recipients  []string `json:"recipients,omitempty"`
+	Subscribers []string `json:"subscribers,omitempty"`
 }
 
 type ResponsePayload struct {
@@ -74,7 +75,7 @@ func GetSecrets(prod bool, test_address string) (Secrets, error) {
 func SendEmail(post Post, opts Options) (ResponsePayload, error) {
 	var resp ResponsePayload
 	var err error
-	payload := EmailPayload{&post.Title, &post.Content, &opts.Status, nil, nil}
+	payload := EmailPayload{opts.Status, &post.Title, &post.Content, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
 	if opts.Status == STATUS_FINAL {
@@ -128,7 +129,7 @@ func SendEmail(post Post, opts Options) (ResponsePayload, error) {
 		}
 		opts.Method = HTTP_PATCH
 		opts.Status = STATUS_FINAL
-		payload.Status = &opts.Status
+		payload := EmailPayload{opts.Status, nil, nil, nil, nil}
 		return SendPayload(payload, opts)
 	}
 	fmt.Println("quitting")
