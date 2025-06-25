@@ -26,20 +26,21 @@ type Post struct {
 
 type RSS struct {
 	XMLName xml.Name `xml:"rss"`
-	Items   []*Post  `xml:"channel>item"`
+	Items   []Post   `xml:"channel>item"`
 }
 
-func GetSlug(rss *RSS, opts *Options) (*Post, error) {
+// NOTE: take the RSS pointer since this is fairly large.
+func GetSlug(rss *RSS, opts Options) (Post, error) {
 	if opts.Slug == "" {
-		return nil, errors.New("--slug flag can't be empty")
+		return Post{}, errors.New("--slug flag can't be empty")
 	}
-	for _, i := range rss.Items {
-		u, _ := url.Parse(i.Link)
+	for _, p := range rss.Items {
+		u, _ := url.Parse(p.Link)
 		if filepath.Join("/posts/", opts.Slug) == filepath.Clean(u.Path) {
-			return i, nil
+			return p, nil
 		}
 	}
-	return nil, errors.New("didn't find the slug")
+	return Post{}, errors.New("didn't find the slug")
 }
 
 func isURL(str string) bool {
@@ -61,7 +62,7 @@ func isFilePath(str string) bool {
 }
 
 // gets the []byte content of either a URL or file.
-func GetUrlOrFile(opts *Options) ([]byte, error) {
+func GetUrlOrFile(opts Options) ([]byte, error) {
 	var dat []byte
 	var err error
 	if isURL(opts.Source) {
@@ -83,19 +84,19 @@ func GetUrlOrFile(opts *Options) ([]byte, error) {
 	return dat, nil
 }
 
-// Returns a *Post by matching the opts.Slug against the opts.Source.
-func ExtractPost(opts *Options) (*Post, error) {
+// Returns a Post by matching the opts.Slug against the opts.Source.
+func ExtractPost(opts Options) (Post, error) {
 	dat, err := GetUrlOrFile(opts)
 	if err != nil {
-		return nil, err
+		return Post{}, err
 	}
 	var rss RSS
 	if err := xml.Unmarshal(dat, &rss); err != nil {
-		return nil, err
+		return Post{}, err
 	}
-	i, err := GetSlug(&rss, opts)
+	p, err := GetSlug(&rss, opts)
 	if err != nil {
-		return nil, err
+		return Post{}, err
 	}
-	return i, nil
+	return p, nil
 }

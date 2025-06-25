@@ -13,7 +13,7 @@ type Options struct {
 	Email_id string
 	Endpoint string
 	Method   string
-	Secrets  *Secrets
+	Secrets  Secrets
 }
 
 func main() {
@@ -33,23 +33,21 @@ func main() {
 	}
 	opts := Options{*source, *template_path, *status, *slug, *email_id, "", *method, secrets}
 
-	post, err := ExtractPost(&opts)
+	post, err := ExtractPost(opts)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(post.Title)
 	fmt.Println(post.Link)
 
-	post, err = Assemble(post, &opts)
+	post, err = Assemble(post, opts)
 	if err != nil {
 		panic(err)
 	}
 
-	resp, err := SendEmail(post, &opts)
+	resp, err := SendEmail(post, opts)
 	if err != nil {
-		if resp != nil {
-			fmt.Println(resp.Status)
-		}
+		fmt.Println(resp.Status)
 		panic(err)
 	}
 	fmt.Println("final response status:", resp.Status)

@@ -42,14 +42,14 @@ type ResponsePayload struct {
 }
 
 // Fill out Secrets struct from .gitignore'd SECRET_SOURCE.
-func GetSecrets(prod bool, test_address string) (*Secrets, error) {
+func GetSecrets(prod bool, test_address string) (Secrets, error) {
+	var secrets Secrets
 	dat, err := os.ReadFile(SECRET_SOURCE)
 	if err != nil {
-		return nil, err
+		return secrets, err
 	}
-	var secrets Secrets
 	if err := json.Unmarshal(dat, &secrets); err != nil {
-		return nil, err
+		return secrets, err
 	}
 	// NOTE: .Key is left initially empty by design.
 	secrets.Key = secrets.Test_buttondown_api_key
@@ -59,7 +59,7 @@ func GetSecrets(prod bool, test_address string) (*Secrets, error) {
 	if test_address != "" {
 		secrets.Test_address = test_address
 	}
-	return &secrets, nil
+	return secrets, nil
 }
 
 // Send the Post using the Options.
@@ -71,17 +71,19 @@ func GetSecrets(prod bool, test_address string) (*Secrets, error) {
 // 3. use the response email_id to send.
 //
 // Also possible to feed in the opts.Email_id directly, if opts.Status=="about_to_send"
-func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
+func SendEmail(post Post, opts Options) (ResponsePayload, error) {
+	var resp ResponsePayload
+	var err error
 	payload := EmailPayload{&post.Title, &post.Content, &opts.Status, nil, nil}
 
 	// skip directly to prod if draft aleady exists:
 	if opts.Status == STATUS_FINAL {
 		if opts.Email_id == "" {
-			return nil, errors.New("sending to prod requires an email_id of a draft")
+			return resp, errors.New("sending to prod requires an email_id of a draft")
 		}
 		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
 		if err != nil {
-			return nil, err
+			return resp, err
 		}
 		return SendPayload(payload, opts)
 	}
@@ -89,8 +91,7 @@ func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
 	// create draft
 	opts.Endpoint = BASEURL
 	resp, err = SendPayload(payload, opts)
-	// NOTE: resp should not be nil:
-	if err != nil || resp == nil {
+	if err != nil {
 		return resp, err
 	}
 	if resp.Status != STATUS_DRAFT {
@@ -102,7 +103,7 @@ func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
 	fmt.Println("email_id:", opts.Email_id)
 	opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id, ENDPOINT_SEND_DRAFT)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
 	payload.Recipients = []string{opts.Secrets.Test_address}
 	// payload.Subscribers = []string{opts.Secrets.Test_subscriber}
@@ -116,14 +117,14 @@ func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
 	fmt.Println("sent draft. send to all subscribers? Yes/n:")
 	var answer string
 	if _, err := fmt.Scanln(&answer); err != nil {
-		return nil, err
+		return resp, err
 	}
 	if answer == "Yes" {
 		// NOTE: difference is no /send-draft at the end, and
 		// status="about_to_send", and "PATCH" method
 		opts.Endpoint, err = url.JoinPath(BASEURL, opts.Email_id)
 		if err != nil {
-			return nil, err
+			return resp, err
 		}
 		opts.Method = HTTP_PATCH
 		opts.Status = STATUS_FINAL
@@ -134,16 +135,17 @@ func SendEmail(post *Post, opts *Options) (resp *ResponsePayload, err error) {
 	return resp, nil
 }
 
-func SendPayload(payload EmailPayload, opts *Options) (*ResponsePayload, error) {
+func SendPayload(payload EmailPayload, opts Options) (ResponsePayload, error) {
+	var resp ResponsePayload
 	b, err := json.Marshal(payload)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
 	r := bytes.NewReader(b)
 
 	req, err := http.NewRequest(opts.Method, opts.Endpoint, r)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
 	// NOTE: buttondown expects "Token key", standard seems to be "Bearer key"
 	// NOTE: mailgun expects BasicAuth, with "api" as username.
@@ -152,20 +154,19 @@ func SendPayload(payload EmailPayload, opts *Options) (*ResponsePayload, error) 
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
-	var resp ResponsePayload
 	if len(body) != 0 {
 		if err := json.Unmarshal(body, &resp); err != nil {
-			return nil, err
+			return resp, err
 		}
 	} else {
 		fmt.Println("NOTE: response body empty, expected for endpoint:", ENDPOINT_SEND_DRAFT)
 	}
-	return &resp, nil
+	return resp, nil
 }
